@@ -13,6 +13,6 @@
 
 
 ## Cite
-If used please cite: Martinez, J.A. (2026). *Semiautomatic masking*. Zenodo. https://doi.org/10.5281/zenodo.23350923
+If used please cite: Martinez, J.A. (2026). *Semiautomatic masking*. Zenodo. [https://doi.org/10.5281/zenodo.23350923](https://doi.org/10.5281/zenodo.23401492)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23350923.svg)](https://doi.org/10.5281/zenodo.23350923)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23401492.svg)](https://doi.org/10.5281/zenodo.23401492)
