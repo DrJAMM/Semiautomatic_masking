@@ -1,0 +1,63 @@
+# Builds the Windows and Mac apps in the cloud.
+# - When a release is published, the apps are built and attached to that release (Releases page).
+# - It can also be run by hand from the Actions tab (Build apps > Run workflow). If you type an existing release tag there
+#   (for example v1.0.1), the apps are attached to that release; with the box empty they are only under "Artifacts".
+name: Build apps
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing release tag to attach the apps to (empty = only keep them as Artifacts)'
+        required: false
+        default: ''
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: utils
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller --noconfirm --windowed --name Semiautomatic_masking --icon icon.ico --hidden-import matplotlib.backends.backend_tkagg --exclude-module IPython --exclude-module PyQt5 --exclude-module PyQt6 --exclude-module PySide6 --exclude-module pytest Semiautomatic_masking.py
+      - run: Compress-Archive -Path dist/Semiautomatic_masking -DestinationPath Semiautomatic_masking_windows.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Semiautomatic_masking_windows
+          path: utils/Semiautomatic_masking_windows.zip
+      - if: github.event_name == 'release' || inputs.tag != ''
+        run: gh release upload "${{ github.event.release.tag_name || inputs.tag }}" Semiautomatic_masking_windows.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  mac:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: utils
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller --noconfirm --windowed --name Semiautomatic_masking --icon icon.icns --add-data icon.png:. --hidden-import matplotlib.backends.backend_macosx --exclude-module tkinter --exclude-module IPython --exclude-module PyQt5 --exclude-module PyQt6 --exclude-module PySide6 --exclude-module pytest Semiautomatic_masking.py
+      - run: ditto -c -k --keepParent dist/Semiautomatic_masking.app Semiautomatic_masking_mac.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Semiautomatic_masking_mac
+          path: utils/Semiautomatic_masking_mac.zip
+      - if: github.event_name == 'release' || inputs.tag != ''
+        run: gh release upload "${{ github.event.release.tag_name || inputs.tag }}" Semiautomatic_masking_mac.zip --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}

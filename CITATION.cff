@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Semiautomatic masking"
+abstract: "Graphical tool to segment in 3D MRI (.mat, NIfTI or DICOM): draw ROI on a few slices and the rest is interpolated." 
+type: software
+authors:
+  - family-names: "Martinez"
+    given-names: "J.A."
+    orcid: "https://orcid.org/0000-0002-3274-566X"
+    affiliation: "National Institute of Standards and Technology (NIST); University of Colorado Boulder"
+version: 1.0.1
+date-released: 2026-10-13
+license: MIT
+repository-code: "https://github.com/DrJAMM/Semiautomatic_masking"
+keywords:
+  - MRI
+  - segmentation
+  - interpolation
+  - NIfTI
+  - DICOM

@@ -1,0 +1,9 @@
+# the built apps are made by the workflow, do not upload them
+*.app/
+dist/
+build/
+.build_env/
+__pycache__/
+Icon?
+.DS_Store
+.Rhistory
