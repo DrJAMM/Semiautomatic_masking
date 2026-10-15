@@ -7,8 +7,8 @@
 3. Export can be `.mat` or NIfTI.
 
 # Download the executable here:
-- [Windows](https://github.com/DrJAMM/Semiautomatic_masking/releases/download/v1.0.1/Semiautomatic_masking_windows.zip)
-- [Mac](https://github.com/DrJAMM/Semiautomatic_masking/releases/download/v1.0.1/Semiautomatic_masking_mac.zip)
+- [Windows](https://github.com/DrJAMM/Semiautomatic_masking_App/releases/download/v1.0.1/Semiautomatic_masking_windows.zip)
+- [Mac](https://github.com/DrJAMM/Semiautomatic_masking_App/releases/download/v1.0.1/Semiautomatic_masking_mac.zip)
   * *if Mac blocks app, go to: System Settings → Privacy & Security and scroll down to Security to grant access*
 
 
